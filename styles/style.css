@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 800px;
+}
+
+.word {
+  margin-top: 50px;
+}
+
+.word h1 {
+  font-family: 'Playfair Display',serif;
+  font-weight: 700;
+}
+
+.answer {
+  text-align: center;
+}
+
+.answer_btn {
+  width: 200px;
+  height: 50px;
+  padding: 5px 15px;
+  margin: 30px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 20px;
+  -webkit-box-shadow: 3px 5px;
+          box-shadow: 3px 5px;
+  text-align: center;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.answer_btn:hover {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-box-shadow: 1px 2px;
+          box-shadow: 1px 2px;
+}
+
+.answer_header {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
