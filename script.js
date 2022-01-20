@@ -34,7 +34,10 @@ const part_of_speech = document.querySelector('#part_of_speech');
 const description = document.querySelector('#description');
 const answer_btn_1 = document.querySelector('#answer_btn_1');
 const answer_btn_2 = document.querySelector('#answer_btn_2');
-const answer_header = document.querySelector('#answer_header');
+const answer_section = document.querySelector('#answer_section');
+const answer_section_correct = document.querySelector('#correct');
+const answer_section_incorrect = document.querySelector('#incorrect');
+let selectedWord;
 
 const startGame = () => {
     randomNum = Math.floor(Math.random()*words.length);
@@ -50,6 +53,15 @@ const startGame = () => {
         );
 }
 
+const setAnswerToBtn = (btn, answer) => {
+    btn.dataset.correct = answer.correct;
+    btn.textContent = answer.text;
+}
+
+const parseBool = (str) => {
+    return (str === 'true')
+}
+
 const selectCorrectAnswer = (btn1, btn2, correctAns, incorrectAns) => {
     if(Math.floor(Math.random() * 2)){
         setAnswerToBtn(btn1, correctAns);
@@ -61,19 +73,69 @@ const selectCorrectAnswer = (btn1, btn2, correctAns, incorrectAns) => {
     }
 }
 
-const setAnswerToBtn = (btn, answer) => {
-    btn.dataset.correct = answer.correct;
-    btn.textContent = answer.text;
+const createDescriptionBlock = (initialWord, correctWord) => {
+    const desc = document.createElement('p');
+    desc.textContent = `${initialWord} пишется через ${correctWord}`;
+
+    const descBlock = document.createElement('div');
+    descBlock.classList.add('answer_section_desc','transition');
+
+    descBlock.appendChild(desc);
+    return descBlock;
 }
 
-answer_btn_1.addEventListener('click', (e) =>{
-    answer_header.innerText = "Answer 1";    
-    console.log(e.target.dataset.correct);
-})
+const createBtnBlock = () => {
+    const btnBlock = document.createElement('div');
+    btnBlock.classList.add('btn_block', 'transition');
+    btnBlock.innerHTML = `
+        <button class="btn">Далее <i class="fas fa-chevron-right"></i></button>
+    `;
+    return btnBlock;
+}
 
-answer_btn_2.addEventListener('click', (e) =>{
-    answer_header.innerText = "Answer 2"; 
-    console.log(e.target.dataset.correct);
+const createCorrectBlock = (isCorrect) => {
+    const contentBlock = document.createElement('div');
+    contentBlock.classList.add(`${isCorrect}_content`);
+
+    const header = document.createElement('h1');
+    const img = document.createElement('img');
+    header.innerText = isCorrect === 'correct' ? 'Правильно!' : 'Неправильно!'
+    img.src = `img/icons/${isCorrect}.png`;
+    
+    contentBlock.appendChild(img);
+    contentBlock.appendChild(header);
+    
+    const answerBlock = document.createElement('div');
+    answerBlock.classList.add(isCorrect,'transition');
+
+    answerBlock.appendChild(contentBlock);
+
+    return answerBlock;
+}
+
+const createAnswerBlock = (correctBlock,descriptionBlock,btnBlock,answerSection) => {
+    answerSection.appendChild(correctBlock);
+    answerSection.appendChild(descriptionBlock);
+    answerSection.appendChild(btnBlock);
+    answerSection.classList.remove('hidden')
+} 
+
+const addAnswerBlock = (datasetCorrect) => {
+    if(!answer_section.classList.contains('hidden'))
+            return
+        
+        const isCorrect = parseBool(datasetCorrect)
+        const correctBlock = isCorrect ? createCorrectBlock('correct') : createCorrectBlock('incorrect');
+        const initialWord = selectedWord.word;
+        const correctWord = selectedWord.answers[0].text;
+        const descriptionBlock = createDescriptionBlock(initialWord,correctWord);
+        const btnBlock = createBtnBlock();
+        
+        createAnswerBlock(correctBlock,descriptionBlock,btnBlock,answer_section);
+}
+
+[answer_btn_1,answer_btn_2].forEach(btn => {
+    btn.addEventListener('click', (e) => addAnswerBlock(e.target.dataset.correct));
 })
 
 startGame();

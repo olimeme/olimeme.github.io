@@ -17,17 +17,14 @@
   font-weight: 700;
 }
 
-.answer {
-  text-align: center;
-}
-
-.answer_btn {
+.btn {
   width: 200px;
   height: 50px;
   padding: 5px 15px;
   margin: 30px;
   background-color: white;
   border: 1px solid black;
+  border-radius: 0px;
   font-size: 20px;
   -webkit-box-shadow: 3px 5px;
           box-shadow: 3px 5px;
@@ -36,14 +33,91 @@
   transition: all 0.2s;
 }
 
-.answer_btn:hover {
+.btn:hover {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   -webkit-box-shadow: 1px 2px;
           box-shadow: 1px 2px;
 }
 
+.btn_block {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+@-webkit-keyframes animate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.transition {
+  -webkit-animation: animate 0.3s linear;
+          animation: animate 0.3s linear;
+}
+
+.transition_btn {
+  -webkit-animation: animate 0.3s linear;
+          animation: animate 0.3s linear;
+}
+
 .answer_header {
   text-align: center;
+}
+
+.answer_section img {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+.answer_section h1 {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.answer_section_desc p {
+  font-size: 22px;
+}
+
+.answer_section .correct h1 {
+  color: #36b12b;
+}
+
+.answer_section .correct_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.answer_section .incorrect_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.answer_section .incorrect h1 {
+  color: #e64444;
 }
 /*# sourceMappingURL=style.css.map */
