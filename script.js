@@ -35,11 +35,15 @@ const description = document.querySelector('#description');
 const answer_btn_1 = document.querySelector('#answer_btn_1');
 const answer_btn_2 = document.querySelector('#answer_btn_2');
 const answer_section = document.querySelector('#answer_section');
-const answer_section_correct = document.querySelector('#correct');
-const answer_section_incorrect = document.querySelector('#incorrect');
+const btn_block = document.querySelector('#btn_block');
+const btn_next = document.querySelector('#btn_next');
 let selectedWord;
 
 const startGame = () => {
+    if(!answer_section.classList.contains('hidden')){
+        clearAnswerSection();
+        answer_section.classList.add('hidden');
+    }
     randomNum = Math.floor(Math.random()*words.length);
     selectedWord = words[randomNum];
     word.textContent = selectedWord.word;
@@ -53,16 +57,21 @@ const startGame = () => {
         );
 }
 
+const clearAnswerSection = () =>{
+    answer_section.removeChild(answer_section.firstChild.nextSibling); //removes correct/incorrect section
+    answer_section.removeChild(answer_section.firstChild.nextSibling); //removes description section
+}
+
 const setAnswerToBtn = (btn, answer) => {
-    btn.dataset.correct = answer.correct;
-    btn.textContent = answer.text;
+    btn.dataset.correct = answer.correct;   //adds correct answer boolean value into the dataset of a button
+    btn.textContent = answer.text;  //adds the answer text to a button
 }
 
-const parseBool = (str) => {
-    return (str === 'true')
+const parseBool = (str) => {    //parses the string value retrived from dataset to boolean value 
+    return (str === 'true')     
 }
 
-const selectCorrectAnswer = (btn1, btn2, correctAns, incorrectAns) => {
+const selectCorrectAnswer = (btn1, btn2, correctAns, incorrectAns) => { //randomly assigns correct value to one of the answer buttons
     if(Math.floor(Math.random() * 2)){
         setAnswerToBtn(btn1, correctAns);
         setAnswerToBtn(btn2, incorrectAns);
@@ -73,7 +82,7 @@ const selectCorrectAnswer = (btn1, btn2, correctAns, incorrectAns) => {
     }
 }
 
-const createDescriptionBlock = (initialWord, correctWord) => {
+const createDescriptionBlock = (initialWord, correctWord) => { 
     const desc = document.createElement('p');
     desc.textContent = `${initialWord} пишется через ${correctWord}`;
 
@@ -84,13 +93,11 @@ const createDescriptionBlock = (initialWord, correctWord) => {
     return descBlock;
 }
 
-const createBtnBlock = () => {
-    const btnBlock = document.createElement('div');
-    btnBlock.classList.add('btn_block', 'transition');
-    btnBlock.innerHTML = `
-        <button class="btn">Далее <i class="fas fa-chevron-right"></i></button>
-    `;
-    return btnBlock;
+const revealBtnBlock = () => {
+    if(btn_block.classList.contains('hidden')){
+        btn_block.classList.remove('hidden')
+        btn_block.classList.add('transition')
+    }
 }
 
 const createCorrectBlock = (isCorrect) => {
@@ -113,14 +120,13 @@ const createCorrectBlock = (isCorrect) => {
     return answerBlock;
 }
 
-const createAnswerBlock = (correctBlock,descriptionBlock,btnBlock,answerSection) => {
-    answerSection.appendChild(correctBlock);
-    answerSection.appendChild(descriptionBlock);
-    answerSection.appendChild(btnBlock);
+const createAnswerBlock = (correctBlock,descriptionBlock,answerSection) => {
+    answerSection.insertBefore(descriptionBlock,btn_block);
+    answerSection.insertBefore(correctBlock, descriptionBlock)
     answerSection.classList.remove('hidden')
 } 
 
-const addAnswerBlock = (datasetCorrect) => {
+const addAnswerBlock = (datasetCorrect) => { //adds answer block into answer section  
     if(!answer_section.classList.contains('hidden'))
             return
         
@@ -129,13 +135,15 @@ const addAnswerBlock = (datasetCorrect) => {
         const initialWord = selectedWord.word;
         const correctWord = selectedWord.answers[0].text;
         const descriptionBlock = createDescriptionBlock(initialWord,correctWord);
-        const btnBlock = createBtnBlock();
         
-        createAnswerBlock(correctBlock,descriptionBlock,btnBlock,answer_section);
+        createAnswerBlock(correctBlock,descriptionBlock,answer_section);
+        revealBtnBlock();
 }
 
 [answer_btn_1,answer_btn_2].forEach(btn => {
     btn.addEventListener('click', (e) => addAnswerBlock(e.target.dataset.correct));
 })
+
+btn_next.addEventListener('click',startGame);
 
 startGame();

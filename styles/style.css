@@ -71,11 +71,6 @@
           animation: animate 0.3s linear;
 }
 
-.transition_btn {
-  -webkit-animation: animate 0.3s linear;
-          animation: animate 0.3s linear;
-}
-
 .answer_header {
   text-align: center;
 }
