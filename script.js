@@ -30,6 +30,7 @@ const words = [
 ]
 
 const word = document.querySelector('#word');
+const save_btn = document.querySelector('#save_btn');
 const part_of_speech = document.querySelector('#part_of_speech');
 const description = document.querySelector('#description');
 const answer_btn_1 = document.querySelector('#answer_btn_1');
@@ -140,10 +141,15 @@ const addAnswerBlock = (datasetCorrect) => { //adds answer block into answer sec
         revealBtnBlock();
 }
 
+
 [answer_btn_1,answer_btn_2].forEach(btn => {
     btn.addEventListener('click', (e) => addAnswerBlock(e.target.dataset.correct));
-})
+});
 
 btn_next.addEventListener('click',startGame);
+
+save_btn.addEventListener('click',()=>{
+    console.log('hello');
+});
 
 startGame();

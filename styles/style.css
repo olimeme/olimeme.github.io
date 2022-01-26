@@ -10,6 +10,7 @@
 
 .word {
   margin-top: 50px;
+  position: relative;
 }
 
 .word h1 {
@@ -38,6 +39,27 @@
   transition: all 0.2s;
   -webkit-box-shadow: 1px 2px;
           box-shadow: 1px 2px;
+}
+
+.btn_save {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  background-color: white;
+  -webkit-box-shadow: 1px 2px;
+          box-shadow: 1px 2px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: absolute;
+  left: -60px;
+  top: 10px;
+}
+
+.btn_save:hover {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-box-shadow: 2px 3px;
+          box-shadow: 2px 3px;
 }
 
 .btn_block {
