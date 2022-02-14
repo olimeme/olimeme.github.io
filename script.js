@@ -26,7 +26,217 @@ const words = [
             { text: 'стАтуя', correct: true},
             { text: 'статУя', correct: false}
         ]
-    }
+    },
+    {
+        word: 'Досуха',
+        type: 'Нареч.',
+        definition: 'До полной сухости.',
+        answers: [{
+                text: 'дОсуха',
+                correct: true
+            },
+            {
+                text: 'досухА',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Еретик',
+        type: 'Им. Сущ.',
+        definition: 'Последователь ереси.',
+        answers: [{
+                text: 'еретИк',
+                correct: true
+            },
+            {
+                text: 'ерЕтик',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Взялась',
+        type: 'Глаг.',
+        definition: 'Схватиться за что-л. рукой, руками.',
+        answers: [{
+                text: 'взялАсь',
+                correct: true
+            },
+            {
+                text: 'взЯлась',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Новости',
+        type: 'Им. Сущ.',
+        definition: 'Оперативная информация, которая представляет политический, социальный или экономический интерес для аудитории в своей свежести, то есть сообщения о событиях, произошедших недавно или происходящих в данный момент.',
+        answers: [{
+                text: 'нОвости',
+                correct: true
+            },
+            {
+                text: 'новостИ',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Гнала',
+        type: 'Глаг.',
+        definition: 'Кого-что заставлять двигаться, перемещаться куда-либо',
+        answers: [{
+                text: 'гналА',
+                correct: true
+            },
+            {
+                text: 'гнАла',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Обнялась',
+        type: 'Глаг.',
+        definition: 'Обнимать',
+        answers: [{
+                text: 'обнялАсь',
+                correct: true
+            },
+            {
+                text: 'обнЯлась',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Дозвонится',
+        type: 'Глаг.',
+        definition: 'Звоня, получить ответ.',
+        answers: [{
+                text: 'дозвонИтся',
+                correct: true
+            },
+            {
+                text: 'дозвОнится',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Назвалась',
+        type: 'Глаг.',
+        definition: 'Сообщить свое имя, фамилию, звание, положение и т. п.',
+        answers: [{
+                text: 'назвалАсь',
+                correct: true
+            },
+            {
+                text: 'назвАлась',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Отключенный',
+        type: 'Им. Прил.',
+        definition: '',
+        answers: [{
+                text: 'отключЁнный',
+                correct: true
+            },
+            {
+                text: 'отклЮченный',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Прожорлива',
+        type: 'Им. Прил.',
+        definition: 'Такой, который много ест, жаден к еде; ненасытный.',
+        answers: [{
+                text: 'прожОрлива',
+                correct: true
+            },
+            {
+                text: 'прОжорлива',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Иксы',
+        type: 'Им. Сущ.',
+        definition: 'Фальсифицированная, контрафактная продукция.',
+        answers: [{
+                text: 'Иксы',
+                correct: true
+            },
+            {
+                text: 'иксЫ',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Приняли',
+        type: 'Глаг.',
+        definition: 'Согласиться сделать что-то своим, включить что-то в сферу своего владения, влияния, понимания.',
+        answers: [{
+                text: 'прИняли',
+                correct: true
+            },
+            {
+                text: 'принЯли',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Загодя',
+        type: 'Нареч.',
+        definition: 'Разг. заранее, заблаговременно',
+        answers: [{
+                text: 'зАгодя',
+                correct: true
+            },
+            {
+                text: 'загодЯ',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Затемно',
+        type: 'Нареч.',
+        definition: 'До рассвета, пока еще темно.',
+        answers: [{
+                text: 'зАтемно',
+                correct: true
+            },
+            {
+                text: 'затемнО',
+                correct: false
+            }
+        ]
+    },
+    {
+        word: 'Отрочество',
+        type: 'Им. Сущ.',
+        definition: 'Период жизни человека между детством и юностью.',
+        answers: [{
+                text: 'Отрочество',
+                correct: true
+            },
+            {
+                text: 'отрОчество',
+                correct: false
+            }
+        ]
+    },
 ]
 
 const word = document.querySelector('#word');
@@ -85,7 +295,7 @@ const selectCorrectAnswer = (btn1, btn2, correctAns, incorrectAns) => { //random
 
 const createDescriptionBlock = (initialWord, correctWord) => { 
     const desc = document.createElement('p');
-    desc.textContent = `${initialWord} пишется через ${correctWord}`;
+    desc.textContent = `${initialWord} произноситься как ${correctWord}.`;
 
     const descBlock = document.createElement('div');
     descBlock.classList.add('answer_section_desc','transition');
